@@ -14,14 +14,14 @@
 //    * We chose animals for our theme, but you can make a list to your own liking.
 
 var topics = [
-    "success kid",
-    "grumpy cat",
-    "first world problems",
-    "be like Bill",
-    "distracted boyfriend",
-    "shut up and take my money",
-    "A little bit more",
-    "blackpeopletwitter",
+    "laughing baby",
+    "cats",
+    "sleepy puppy",
+    "corgi",
+    "falling kid",
+    "crying",
+    "yay",
+    "monday",
 ];
 
 // 2. Your app should take the topics in this array and create buttons in your HTML.
@@ -72,22 +72,41 @@ function findMemes(){
         $('.gifs').empty();
 
         for(var i=0; i < response.data.length; i++){
-        $('.gifs').append("<img src='" + response.data[i].images.fixed_height_still.url + "'>");
-
-        $(this).on('click', function(){
-            $('img').html("<img src='" + response.data[i].url + ">.")
-          })
-        }
-
+        console.log(response.data[i].images.fixed_height_still.url);
+        $('.gifs').append("<img data-state='still' class='gif' src='" + response.data[i].images.fixed_height_still.url + "' img-still='" + response.data[i].images.fixed_height_still.url+ "' img-animate='" + response.data[i].images.fixed_height.url + "'>");
         
-    })
+        console.log(response.data[i].images.fixed_height.url);
+
+        $('.gif').on('click', function(){
+  
+          var state = $(this).attr("data-state")
+          console.log(state);
+  
+          if (state === 'still'){
+            $(this).attr("src", $(this).attr("img-animate"))
+            $(this).attr("data-state", "animate")
+            }
+            else {
+              $(this).attr("src", $(this).attr("img-still"))
+              $(this).attr("data-state", "still")
+            }
+        })
+        }
+      })
+
+      
 }
+    
+      
+        
+    
+
 
 $(document).on('click', '.topic', findMemes);
 
 renderButton();
 
-// 3. When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page.
+// 3. When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page. USE PAUSING GIFS EXAMPLE from class
 
 // 4. When the user clicks one of the still GIPHY images, the gif should animate. If the user clicks the gif again, it should stop playing.
 
