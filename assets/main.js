@@ -74,7 +74,16 @@ function findMemes(){
         url: queryURL,
         method: "GET"
       }).then(function(response) {
-        console.log(response);
+        console.log(response.data);
+        
+        for(var i = 0; i<response.data.length; i++){
+        $('.gifs').append("<img src='" + response.data[i].images.fixed_height_still.url + "'>");
+            $(this).on('click', function(){
+                $('img').html("<img src='" + response.data[i].url + ">")
+             })
+        }
+
+        
     })
 }
 
