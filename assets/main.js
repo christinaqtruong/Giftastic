@@ -6,19 +6,6 @@
 //      * `rating`
 //    * Like many APIs, GIPHY requires developers to use a key to access their API data. To use the GIPHY API, you'll need a GIPHY account (don't worry, it's free!) and then obtain an API Key by [creating an app](https://developers.giphy.com/dashboard/?create=true).
 //    * Make sure you switch the protocol in the query URL from **`http to https`**, or the app may not work properly when deployed to Github Pages.
-
-
-  // Example queryURL for Giphy API
-  var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&q=cheeseburger&limit=1";
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function(response) {
-    console.log(response);
-  });
-
-
 // 2. **[Watch the demo video](https://youtu.be/BqreERTLjgQ)**
 
 // ### Instructions
@@ -39,6 +26,8 @@ var topics = [
 
 // 2. Your app should take the topics in this array and create buttons in your HTML.
 //    * Try using a loop that appends a button for each string in the array.
+
+//Creates buttons for every item in the array by first clearing out the old buttons and then creating new ones
 function renderButton(){
     
     $('.buttons').empty();
@@ -53,6 +42,7 @@ function renderButton(){
     } 
 }
 
+//On clicking the submission button, adds the input to the array so that it can be rendered into a button using the renderButton function called at the end of the block
 $('#add-button').on('click', function(event){
     event.preventDefault();
     
@@ -67,19 +57,21 @@ $('#add-button').on('click', function(event){
 function findMemes(){
     
     var interest = $(this).attr("data");
+    console.log(interest);
     
-    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&q=" + interest + "&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&q=" + interest + "&limit=10";
     
     $.ajax({
         url: queryURL,
         method: "GET"
       }).then(function(response) {
+        console.log(queryURL);
         console.log(response.data);
         
         for(var i = 0; i<response.data.length; i++){
         $('.gifs').append("<img src='" + response.data[i].images.fixed_height_still.url + "'>");
             $(this).on('click', function(){
-                $('img').html("<img src='" + response.data[i].url + ">")
+                $('img').html("<img src='" + response.data[i].url + ">.")
              })
         }
 
