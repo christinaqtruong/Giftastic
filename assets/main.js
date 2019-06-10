@@ -54,6 +54,7 @@ $('#add-button').on('click', function(event){
     renderButton();
 })
 
+//selects the text from inside the button and creates a URL to search Giphy for related gifs. Then displays the static gif images retrieved
 function findMemes(){
     
     var interest = $(this).attr("data");
@@ -68,11 +69,14 @@ function findMemes(){
         console.log(queryURL);
         console.log(response.data);
         
-        for(var i = 0; i<response.data.length; i++){
+        $('.gifs').empty();
+
+        for(var i=0; i < response.data.length; i++){
         $('.gifs').append("<img src='" + response.data[i].images.fixed_height_still.url + "'>");
-            $(this).on('click', function(){
-                $('img').html("<img src='" + response.data[i].url + ">.")
-             })
+
+        $(this).on('click', function(){
+            $('img').html("<img src='" + response.data[i].url + ">.")
+          })
         }
 
         

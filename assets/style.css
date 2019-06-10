@@ -1,6 +1,24 @@
 *{
     color: #303030;
-    margin: 0 auto;
+    margin: 10px auto;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
+}
+
+.topic{
+    border-radius: 5px;
+    background-color: darkgray;
+}
+
+.topic:hover{
+    transform: 1.5em;
+}
+
+#add-button{
+    border-radius: 5px;
+    background-color: darkgray;
+}
+
+#add-button:hover{
+    transform: 1.5em;
 }
