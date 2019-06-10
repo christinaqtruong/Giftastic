@@ -46,7 +46,7 @@ function renderButton(){
 $('#add-button').on('click', function(event){
     event.preventDefault();
     
-    var meme = $('#input').val();
+    var meme = $('#gif-input').val();
 
     topics.push(meme);
     console.log(topics);

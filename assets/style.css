@@ -10,15 +10,21 @@
     background-color: darkgray;
 }
 
-.topic:hover{
-    transform: 1.5em;
-}
-
 #add-button{
     border-radius: 5px;
     background-color: darkgray;
 }
 
 #add-button:hover{
-    transform: 1.5em;
+    transform: scale(1.2);
+    background-color: gray;
+}
+
+.topic:hover{
+    transform: scale(1.2);
+    background-color: gray;
+}
+
+.gif{
+    margin: 5px;
 }
